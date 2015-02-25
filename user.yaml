@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: <sshusername>
+  sudo: yes
+  serial: 5
+  gather_facts: false
+  tasks:
+    - shell: puppet agent --test --environment bootstrap
+      register: puppet
+      failed_when: puppet.rc > 2 
